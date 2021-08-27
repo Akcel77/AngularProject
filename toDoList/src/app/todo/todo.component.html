@@ -1,8 +1,23 @@
 <h1>Liste des taches a realiser</h1>
 
-<ul class="list-group">
-  <li class="list-group-item">Projet 1</li>
-  <li class="list-group-item">Projet 2</li>
-  <li class="list-group-item">Projet 3</li>
-  <li class="list-group-item">Projet 4</li>
-</ul>
+
+
+  <!-- create a bootstrap card-->
+  <div class="container card-box">
+    <div class="card" *ngFor="let todo of todos, let i = index">
+      <div class="card-body" [ngClass]="{aFaire:todo.todoStatus,fait:!todo.todoStatus}">
+        <a href="{{ todo.todoImage }}" target="_blank">
+          <img src="{{ todo.todoImage }}" class="card-img-top" alt="...">
+        </a>
+        <h5 class="card-title">{{ todo.todoName }}</h5>
+
+        <div class="button-container">
+          <button class="btn btn-danger" [disabled]="!todo.todoStatus" (click)="onChangeStatus(i)" >En cours</button>
+          <button class="btn btn-success" [disabled]="todo.todoStatus" (click)="onChangeStatus(i)" >Termine</button>
+        </div>
+
+        <input class="form-control" [(ngModel)]="todo.todoName" >
+      </div>
+    </div>
+  </div>
+
