@@ -10,6 +10,11 @@
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   margin-bottom: 1rem;
 }
+.button-container-modifier{
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-bottom: 1rem;
+}
 .fait{
   background-color: rgba(99, 110, 114,0.4);
 }

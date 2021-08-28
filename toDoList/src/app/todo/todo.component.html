@@ -1,22 +1,23 @@
 <h1>Liste des taches a realiser</h1>
-
-
-
-  <!-- create a bootstrap card-->
   <div class="container card-box">
     <div class="card" *ngFor="let todo of todos, let i = index">
       <div class="card-body" [ngClass]="{aFaire:todo.todoStatus,fait:!todo.todoStatus}">
         <a href="{{ todo.todoImage }}" target="_blank">
           <img src="{{ todo.todoImage }}" class="card-img-top" alt="...">
         </a>
-        <h5 class="card-title">{{ todo.todoName }}</h5>
+        <h5 class="card-title mt-2">{{ todo.todoName }}</h5>
 
         <div class="button-container">
-          <button class="btn btn-danger" [disabled]="!todo.todoStatus" (click)="onChangeStatus(i)" >En cours</button>
-          <button class="btn btn-success" [disabled]="todo.todoStatus" (click)="onChangeStatus(i)" >Termine</button>
+          <button class="btn btn-danger" [disabled]="todo.todoStatus" (click)="onChangeStatus(i)" >En cours</button>
+          <button class="btn btn-success" [disabled]="!todo.todoStatus" (click)="onChangeStatus(i)" >Termine</button>
         </div>
 
-        <input class="form-control" [(ngModel)]="todo.todoName" >
+        <div class="button-container-modifier">
+          <button *ngIf="!todo.isModified" class="btn btn-success" (click)="onChangeIsModified(i)">Modifier</button>
+          <button *ngIf="todo.isModified" class="btn btn-danger" (click)="onChangeIsModified(i)">Modification terminee</button>
+        </div>
+
+        <input *ngIf="todo.isModified" class="form-control" [(ngModel)]="todo.todoName">
       </div>
     </div>
   </div>
