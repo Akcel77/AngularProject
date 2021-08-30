@@ -41,4 +41,13 @@ export class TodoService{
   onChangeIsModified(i :number) {
     this.todos[i].isModified = !this.todos[i].isModified;
   }
+
+  getTodo(index :number) {
+    if (this.todos[index]) {
+      return this.todos[index];
+    }
+    return false;
+  }
+
+
 }

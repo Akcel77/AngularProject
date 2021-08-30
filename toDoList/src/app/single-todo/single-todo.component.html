@@ -1,1 +1,11 @@
-<p>single-todo works!</p>
+<p *ngIf="!todo">{{ error }}</p>
+<a type="button" class="btn btn-warning mb-4" routerLink="/todo">Retour</a>
+<div *ngIf="todo" class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{ todo.todoName }}</h5>
+    <p class="card-text">{{ todo.todoStatus }}</p>
+    <a [href]="todo.todoImage" target="_blank">
+      <img [ngStyle]="{width: '50%'}" [src]="todo.todoImage" class="card-img-top" alt="...">
+    </a>
+  </div>
+</div>

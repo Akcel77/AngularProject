@@ -17,6 +17,9 @@
           <button *ngIf="todo.isModified" class="btn btn-danger" (click)="onChangeIsModified(i)">Modification terminee</button>
         </div>
 
+        <div class="button-container-modifier">
+          <button class="btn btn-warning" (click)="onView(i)">En savoir plus</button>
+        </div>
         <input *ngIf="todo.isModified" class="form-control" [(ngModel)]="todo.todoName">
       </div>
     </div>

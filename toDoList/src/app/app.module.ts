@@ -13,10 +13,13 @@ import { ContactComponent } from './contact/contact.component';
 import { RouterModule, Routes } from '@angular/router';
 
 export const ROUTES : Routes = [
+  {path: '', component: HomeComponent },
   {path : 'home', component : HomeComponent},
   {path : 'todo', component : TodoComponent},
   {path : 'contact', component : ContactComponent},
   {path : 'not-found', component : NotFoundComponent},
+  {path : 'single-todo/:id', component : SingleTodoComponent},
+  {path : '**', redirectTo : 'not-found'}
 ];
 
 @NgModule({

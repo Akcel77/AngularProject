@@ -1,5 +1,6 @@
 import { OnInit } from "@angular/core";
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 import { TodoService } from "../service/todo.service";
 
 
@@ -12,7 +13,8 @@ import { TodoService } from "../service/todo.service";
 export class TodoComponent implements OnInit {
   today : any;
   todos : any;
-  constructor(private todoService: TodoService) {
+  constructor(private todoService: TodoService,
+              private router : Router) {
 
   }
   ngOnInit() {
@@ -27,4 +29,7 @@ export class TodoComponent implements OnInit {
     this.todoService.onChangeIsModified(i);
   }
 
+  onView(id :number) {
+    this.router.navigate(["single-todo", id]);
+  }
 }
