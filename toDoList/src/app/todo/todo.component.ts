@@ -13,13 +13,20 @@ import { TodoService } from "../service/todo.service";
 export class TodoComponent implements OnInit {
   today : any;
   todos : any;
+
   constructor(private todoService: TodoService,
               private router : Router) {
 
   }
   ngOnInit() {
     this.today = this.todoService.today;
-    this.todos = this.todoService.todos;
+    this.todoService.todos
+      .then((todosRecup: any) => {
+        this.todos = todosRecup;
+      })
+      .catch((err: string) => {
+        console.log("Erreur : "+ err);
+      });
   }
   onChangeStatus(i :number) {
     this.todoService.onChangeStatus(i);

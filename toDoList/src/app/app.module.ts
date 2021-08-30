@@ -13,7 +13,7 @@ import { ContactComponent } from './contact/contact.component';
 import { RouterModule, Routes } from '@angular/router';
 
 export const ROUTES : Routes = [
-  {path: '', component: HomeComponent },
+  {path: '', component: TodoComponent },
   {path : 'home', component : HomeComponent},
   {path : 'todo', component : TodoComponent},
   {path : 'contact', component : ContactComponent},
@@ -37,7 +37,7 @@ export const ROUTES : Routes = [
     FormsModule,
     RouterModule.forRoot(ROUTES),
   ],
-  providers: [],
+  providers: [TodoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

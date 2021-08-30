@@ -1,6 +1,8 @@
+
 <h1 [ngStyle]="{color: 'green'}">Liste des taches a realiser</h1>
   <div class="container card-box">
-    <div class="card" *ngFor="let todo of todos, let i = index">
+    <div class="card" *ngFor="let todo of todos , let i = index">
+
       <div class="card-body" [ngClass]="{aFaire:todo.todoStatus,fait:!todo.todoStatus}">
         <a [href]="todo.todoImage" target="_blank">
           <img [src]="todo.todoImage" class="card-img-top" alt="...">

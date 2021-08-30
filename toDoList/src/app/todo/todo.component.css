@@ -21,3 +21,7 @@
 .aFaire{
   background-color: rgba(223, 230, 233,0.4) ;
 }
+
+img{
+  min-height : 350px;
+}
