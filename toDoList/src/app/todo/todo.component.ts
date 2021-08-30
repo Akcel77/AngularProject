@@ -1,4 +1,6 @@
+import { OnInit } from "@angular/core";
 import { Component } from "@angular/core";
+import { TodoService } from "../service/todo.service";
 
 
 @Component({
@@ -7,43 +9,22 @@ import { Component } from "@angular/core";
     styleUrls: ["./todo.component.css"],
 })
 
-export class TodoComponent {
-  todoStatus : any;
-  today = new Date();
+export class TodoComponent implements OnInit {
+  today : any;
+  todos : any;
+  constructor(private todoService: TodoService) {
 
-
-   todos = [
-    {
-      todoName : "Projet 1",
-      todoStatus : true,
-      todoImage : "https://images.unsplash.com/photo-1485550409059-9afb054cada4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=701&q=80",
-      isModified : false,
-    },
-    {
-      todoName : "Projet 2",
-      todoStatus : true,
-      todoImage : "https://images.unsplash.com/photo-1485550409059-9afb054cada4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=701&q=80",
-      isModified : false,
-    },
-    {
-      todoName : "Projet 3",
-      todoStatus : false,
-      todoImage : "https://images.unsplash.com/photo-1485550409059-9afb054cada4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=701&q=80",
-      isModified : false,
-    },
-    {
-      todoName : "Projet 4",
-      todoStatus : false,
-      todoImage : "https://images.unsplash.com/photo-1485550409059-9afb054cada4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=701&q=80",
-      isModified : false,
-    }
-  ]
-
+  }
+  ngOnInit() {
+    this.today = this.todoService.today;
+    this.todos = this.todoService.todos;
+  }
   onChangeStatus(i :number) {
-    this.todos[i].todoStatus = !this.todos[i].todoStatus;
+    this.todoService.onChangeStatus(i);
   }
 
   onChangeIsModified(i :number) {
-    this.todos[i].isModified = !this.todos[i].isModified;
+    this.todoService.onChangeIsModified(i);
   }
+
 }
