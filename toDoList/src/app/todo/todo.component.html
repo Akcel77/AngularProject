@@ -1,11 +1,11 @@
-<h1>Liste des taches a realiser</h1>
+<h1 [ngStyle]="{color: 'green'}">Liste des taches a realiser</h1>
   <div class="container card-box">
     <div class="card" *ngFor="let todo of todos, let i = index">
       <div class="card-body" [ngClass]="{aFaire:todo.todoStatus,fait:!todo.todoStatus}">
-        <a href="{{ todo.todoImage }}" target="_blank">
-          <img src="{{ todo.todoImage }}" class="card-img-top" alt="...">
+        <a [href]="todo.todoImage" target="_blank">
+          <img [src]="todo.todoImage" class="card-img-top" alt="...">
         </a>
-        <h5 class="card-title mt-2">{{ todo.todoName }}</h5>
+        <h5 class="card-title mt-2">{{ todo.todoName | uppercase }}</h5>
 
         <div class="button-container">
           <button class="btn btn-danger" [disabled]="todo.todoStatus" (click)="onChangeStatus(i)" >En cours</button>
@@ -21,4 +21,4 @@
       </div>
     </div>
   </div>
-
+  <p>Nous sommes le {{ today | date: 'dd/MM/yyyy' }}</p>

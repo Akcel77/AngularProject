@@ -9,7 +9,7 @@ import { Component } from "@angular/core";
 
 export class TodoComponent {
   todoStatus : any;
-
+  today = new Date();
 
 
    todos = [
