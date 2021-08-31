@@ -5,7 +5,7 @@ export class TodoService{
   todoStatus : any;
   todos : any;
   today = new Date();
-  todoSlice:any;
+  todoSlice;
 
   constructor() {
 
