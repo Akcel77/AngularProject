@@ -1,17 +1,17 @@
 import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
 
 @Injectable()
 export class TodoService{
   todoStatus : any;
   todos : any;
   today = new Date();
-  todoSlice;
+  todosSubject = new Subject<any>();
+
 
   constructor() {
-
-
-    this.todos = new Promise((resolve, reject) => {
-      const data = [
+    setTimeout(() => {
+    this.todos= [
         {
           todoName : "Projet 1",
           todoStatus : true,
@@ -41,28 +41,27 @@ export class TodoService{
           description : "Lorem ipsum dolor sit amet, consectetur adipis"
         }
       ];
-      if(data.length){
-        setTimeout(() =>{
-          this.todoSlice = data;
-           resolve(data)},
-           1000);
-      }else{
-        reject("pas de donnees disponibles");
-      }
-    });
+      this.emitTodos();
+    }, 1000)
+  }
+
+  emitTodos() {
+    this.todosSubject.next(this.todos);
   }
 
   onChangeStatus(i :number) {
-    this.todoSlice[i].todoStatus = !this.todoSlice[i].todoStatus;
+    this.todos[i].todoStatus = !this.todos[i].todoStatus;
+    this.emitTodos();
   }
 
   onChangeIsModified(i :number) {
-    this.todoSlice[i].isModified = !this.todoSlice[i].isModified;
+    this.todos[i].isModified = !this.todos[i].isModified;
+    this.emitTodos();
   }
 
   getTodo(index :number) {
-    if (this.todoSlice[index]) {
-      return this.todoSlice[index];
+    if (this.todos[index]) {
+      return this.todos[index];
     }
     return false;
   }

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, interval } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +8,7 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-  nbPairsSub: Subscription = new Subscription;
+  secondesSub: Subscription = new Subscription;
   salutationSub : Subscription = new Subscription;
   secondes!: number;
   value!: number;
@@ -24,17 +24,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       observer.complete();
     });
 
-    const nbPairs = new Observable(observer => {
-      let value = 0;
-      const interval = setInterval(() => {
-        // if(value % 2 === 0) {
-          observer.next(value);
-          this.secondes = value;
-        // }
-        value++;
-      },1000)
-      return () => clearInterval(interval);
-    });
+    const secondesObs = interval(1000);
 
 
     // this.salutationSub = salutation.subscribe(
@@ -43,14 +33,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     //   () => { console.log("Completed"); }
     // );
 
-    this.nbPairsSub = nbPairs.subscribe(
+    this.secondesSub = secondesObs.subscribe(
       (val : any) => {
         this.secondes = val;
         console.log("Value :" + val);
       });
   }
   ngOnDestroy() {
-    this.nbPairsSub.unsubscribe();
+    this.secondesSub.unsubscribe();
     this.salutationSub.unsubscribe();
   }
 }
