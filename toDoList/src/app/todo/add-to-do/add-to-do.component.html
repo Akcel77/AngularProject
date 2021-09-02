@@ -1,0 +1,39 @@
+<!--Create a boostrap form-->
+<div class="row">
+  <h1 class="display-4 text-center">Ajouter une tache a realiser</h1>
+  <div class="col-6">
+    <form action="">
+      <div class="form-group">
+        <label for="todo">Tache a realiser</label>
+        <input type="text" class="form-control"  placeholder="Tache a realiser"
+         id="todoName"
+         name="todoName"
+        [(ngModel)]="todo.todoName">
+      </div>
+      <div class="form-group">
+        <label for="todo">Description</label>
+        <textarea class="form-control"
+         id="description"
+         name="description"
+         [(ngModel)]="todo.description">
+        </textarea>
+      </div>
+      <div class="form-group">
+        <label for="todo">URL de l'image</label>
+        <input type="text" class="form-control"
+         id="image" placeholder="URL de l'image"
+         name="image"
+         [(ngModel)]="todo.todoImage">
+      </div>
+      <div class="form-group">
+        <label for="todo">Etat de la tache :</label>
+        <select class="form-control" id="etat"
+        >
+          <option>En cours</option>
+          <option>Fait</option>
+        </select>
+      </div>
+      <button type="button" class="btn btn-success mt-5">Ajouter</button>
+    </form>
+  </div>
+</div>
