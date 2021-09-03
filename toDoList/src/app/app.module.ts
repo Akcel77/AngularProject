@@ -15,19 +15,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddToDoComponent } from './todo/add-to-do/add-to-do.component';
 import { UsersComponent } from './users/users.component';
 import { AddUserComponent } from './users/add-user/add-user.component';
-
-export const ROUTES : Routes = [
-  {path: '', component: TodoComponent },
-  {path : 'home', component : HomeComponent},
-  {path : 'todo', component : TodoComponent},
-  {path : 'add-todo', component : AddToDoComponent},
-  {path : 'contact', component : ContactComponent},
-  {path : 'users', component : UsersComponent},
-  {path : 'add-user', component : AddUserComponent},
-  {path : 'not-found', component : NotFoundComponent},
-  {path : 'single-todo/:id', component : SingleTodoComponent},
-  {path : '**', redirectTo : 'not-found'}
-];
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -45,9 +33,9 @@ export const ROUTES : Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(ROUTES),
     ReactiveFormsModule,
     HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [TodoService],
   bootstrap: [AppComponent]
