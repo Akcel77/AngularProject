@@ -48,6 +48,12 @@ export class TodoService{
     }, 1000)
   }
 
+  //Injection des donnees dans le tableau puis emition
+  addTodo(todo :Todo) : void{
+    this.todos.unshift(todo);
+    this.emitTodos();
+  }
+
   emitTodos() {
     this.todosSubject.next(this.todos);
   }
