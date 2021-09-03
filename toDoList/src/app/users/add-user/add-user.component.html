@@ -14,6 +14,12 @@
         <label for="email">Email</label>
         <input type="text" class="form-control" id="email" formControlName="email" />
       </div>
+      <div class="form-group" formArrayName="aliases">
+        <button type="button" (click)="addAliases()" class="btn btn-success my-4">Ajouter un Alias</button>
+        <div *ngFor="let alias of getAliases().controls; let i = index">
+            <input type="text" class="form-control my-2" id="alias" [formControlName]="i" />
+        </div>
+      </div>
       <div class="form-group" formGroupName="address">
         <h3>Adresse</h3>
         <div class="row">
