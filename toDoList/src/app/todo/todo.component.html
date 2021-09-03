@@ -7,7 +7,7 @@
         <a [href]="todo.todoImage" target="_blank">
           <img [src]="todo.todoImage" class="card-img-top" alt="...">
         </a>
-        <h5 class="card-title mt-2">{{ todo.todoName | uppercase }}</h5>
+        <h5 class="card-title mt-2">{{ todo.todoName }}</h5>
 
         <div class="button-container">
           <button class="btn btn-danger" [disabled]="todo.todoStatus" (click)="onChangeStatus(i)" >En cours</button>

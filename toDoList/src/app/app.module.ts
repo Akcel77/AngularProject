@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TodoService } from './service/todo.service';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { TodoComponent } from './todo/todo.component';
@@ -46,6 +47,7 @@ export const ROUTES : Routes = [
     FormsModule,
     RouterModule.forRoot(ROUTES),
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [TodoService],
   bootstrap: [AppComponent]
