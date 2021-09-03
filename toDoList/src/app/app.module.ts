@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TodoService } from './service/todo.service';
 
 import { AppComponent } from './app.component';
@@ -12,6 +12,8 @@ import { SingleTodoComponent } from './single-todo/single-todo.component';
 import { ContactComponent } from './contact/contact.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AddToDoComponent } from './todo/add-to-do/add-to-do.component';
+import { UsersComponent } from './users/users.component';
+import { AddUserComponent } from './users/add-user/add-user.component';
 
 export const ROUTES : Routes = [
   {path: '', component: TodoComponent },
@@ -19,6 +21,8 @@ export const ROUTES : Routes = [
   {path : 'todo', component : TodoComponent},
   {path : 'add-todo', component : AddToDoComponent},
   {path : 'contact', component : ContactComponent},
+  {path : 'users', component : UsersComponent},
+  {path : 'add-user', component : AddUserComponent},
   {path : 'not-found', component : NotFoundComponent},
   {path : 'single-todo/:id', component : SingleTodoComponent},
   {path : '**', redirectTo : 'not-found'}
@@ -34,11 +38,14 @@ export const ROUTES : Routes = [
     SingleTodoComponent,
     ContactComponent,
     AddToDoComponent,
+    UsersComponent,
+    AddUserComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(ROUTES),
+    ReactiveFormsModule,
   ],
   providers: [TodoService],
   bootstrap: [AppComponent]

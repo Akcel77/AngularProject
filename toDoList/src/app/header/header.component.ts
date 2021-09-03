@@ -36,7 +36,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.secondesSub = secondesObs.subscribe(
       (val : any) => {
         this.secondes = val;
-        console.log("Value :" + val);
       });
   }
   ngOnDestroy() {
