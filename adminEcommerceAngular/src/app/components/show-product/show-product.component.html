@@ -1,0 +1,37 @@
+<h1>List of products</h1>
+<button class="btn btn-outline btn-sm" (click)="addProduct()">Addproduct</button>
+
+<!--MODAL ADD OR EDIT-->
+<app-add-or-edit-product-modal *ngIf="productModalOpen"></app-add-or-edit-product-modal>
+<!--END MODAL ADD OR EDIT-->
+
+
+<clr-datagrid>
+  <clr-dg-column> ID</clr-dg-column>
+  <clr-dg-column>Name</clr-dg-column>
+  <clr-dg-column>Description</clr-dg-column>
+  <clr-dg-column>Price</clr-dg-column>
+  <clr-dg-column>Stock</clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let product of products">
+    <!--Edit et suppression des produits-->
+    <clr-dg-action-overflow>
+      <button class="action-item" (click)="onEdit(product)">Edit</button>
+      <button class="action-item" (click)="onDelete(product)">Delete</button>
+    </clr-dg-action-overflow>
+    <!--Affichage des produits-->
+    <clr-dg-cell>{{product.idProduct}}</clr-dg-cell>
+    <clr-dg-cell>{{product.name}}</clr-dg-cell>
+    <clr-dg-cell>{{product.description}}</clr-dg-cell>
+    <clr-dg-cell>{{product.price}}€</clr-dg-cell>
+    <clr-dg-cell>{{product.stock}}</clr-dg-cell>
+  </clr-dg-row>
+
+  <!--Pagination-->
+  <clr-dg-footer>
+    <clr-dg-pagination #pagination [clrDgPageSize]="10">
+      <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Product per page</clr-dg-page-size>
+      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Products
+    </clr-dg-pagination>
+  </clr-dg-footer>
+</clr-datagrid>
