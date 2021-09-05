@@ -10,7 +10,7 @@ export class ShowProductComponent implements OnInit {
 
 
   @Input() products! : Product[];
-  productModalOpen : boolean = false
+  productModalOpen : boolean = false;
   constructor() { }
 
   ngOnInit(): void {

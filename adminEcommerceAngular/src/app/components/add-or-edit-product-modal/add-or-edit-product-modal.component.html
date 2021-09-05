@@ -32,8 +32,8 @@
       <div formGroupName="productInfos">
 
         <clr-input-container>
-          <label>Product Name</label>
-          <input clrInput placeholder="Product Name ..." name="name" formControlName="name" />
+          <label for='name'>Product Name</label>
+          <input id='name' clrInput placeholder="Product Name ..." name="name" formControlName="name" />
         </clr-input-container>
 
         <clr-textarea-container>
@@ -52,6 +52,7 @@
         </clr-input-container>
       </div>
     </clr-wizard-page>
+
     <clr-wizard-page>
       <ng-template clrPageTitle>Illustration</ng-template>
       <ng-template clrPageNavTitle>Step 3</ng-template>

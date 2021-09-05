@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Category } from 'src/app/models/category';
@@ -14,10 +14,12 @@ export class AddOrEditProductModalComponent implements OnInit, OnDestroy{
 
 
   @Input() product!: Product;
-  productForm!: FormGroup;
+  @Output() finish = new EventEmitter();
+  productForm: FormGroup;
   categories : Category[] = [];
   categorySub! : Subscription;
   idCategory = 1;
+
 
   constructor(private fb : FormBuilder, private categoriesService: CategoriesService) {
     this.productForm = this.fb.group({
@@ -41,7 +43,7 @@ export class AddOrEditProductModalComponent implements OnInit, OnDestroy{
     this.categorySub = this.categoriesService.getCategories().subscribe(
      (response) => {
       this.categories = response.result;
-      console.log(this.categories);
+      console.log("FORM" + this.productForm.get('productInfos').value);
      },
      (error) => {
        console.log(error);
@@ -50,6 +52,35 @@ export class AddOrEditProductModalComponent implements OnInit, OnDestroy{
        console.log('categories loaded');
      }
     );
+  }
+
+
+  //Verifier le type peut etre null (validator)
+  // get isProductInfosInvalid(): boolean {
+  //    return this.productForm.get('productInfos').invalid;
+  // }
+
+  // get isIllustrationInvalid(): boolean {
+  //   return this.productForm.get('illustration').invalid;
+  // }
+
+  handelCancel(): void {
+    this.finish.emit();
+    this.close();
+  }
+
+
+  // handleFinish(): void {
+  //   const product ={
+  //     ...this.productForm.get('productInfos').value,
+  //     ...this.productForm.get('illustration').value,
+
+  //   }
+  // }
+
+  close(): void {
+    this.productForm.reset();
+    this.idCategory = 1;
   }
 
   ngOnDestroy(): void {
